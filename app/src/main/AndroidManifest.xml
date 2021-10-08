@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarApp">
         <activity
-            android:name=".CalendarActivity"
+            android:name=".AppointmentActivity"
             android:exported="true" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         <activity
-            android:name=".MainActivity"
+            android:name=".CalendarActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
