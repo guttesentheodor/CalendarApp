@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CalendarApp</string>
+    <string name="submit">CalendarApp</string>
+    <string name="MakeAppointment">Opret aftale</string>
+    <string name="Title">Titel</string>
+    <string name="note">skriv noter her</string>
+    <string name="MakeAppointmentDone">Tilføj</string>
+
 </resources>

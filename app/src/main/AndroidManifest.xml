@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarApp">
         <activity
+            android:name=".MakeAppointmentActivity"
+            android:exported="true" />
+        <activity
             android:name=".AppointmentActivity"
             android:exported="true" />
         <activity

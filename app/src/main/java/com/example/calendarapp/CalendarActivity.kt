@@ -1,15 +1,20 @@
 package com.example.calendarapp
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import com.example.calendarapp.databinding.ActivityCalendarBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CalendarActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityCalendarBinding
     private lateinit var appointmentArrayList : ArrayList<Appointment>
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater)
@@ -27,11 +32,13 @@ class CalendarActivity : AppCompatActivity() {
             "begynder kl. 14",
             "kør mor og far til lufthavnen først"
         )
-        val appointmentDates = arrayOf(
-            "13-10-2021",
-            "15-10-2021",
-            "16-10-2021",
-            "17-10-2021"
+        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+
+        val appointmentDates = arrayOf (
+            LocalDate.parse("13-10-2021", formatter),
+            LocalDate.parse("15-10-2021",formatter),
+            LocalDate.parse("16-10-2021",formatter),
+            LocalDate.parse("17-10-2021",formatter)
         )
 
         appointmentArrayList = ArrayList()
@@ -51,7 +58,13 @@ class CalendarActivity : AppCompatActivity() {
             val i = Intent(this,AppointmentActivity::class.java)
             i.putExtra("title", appointmentTitle)
             i.putExtra("note", appointmentNote)
-            i.putExtra("date", appointmentDate)
+            i.putExtra("date", appointmentDate.toString())
+            startActivity(i)
+        }
+
+        binding.fab.isClickable = true
+        binding.fab.setOnClickListener {
+            val i = Intent(this,MakeAppointmentActivity::class.java)
             startActivity(i)
         }
     }
