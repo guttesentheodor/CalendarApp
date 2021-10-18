@@ -1,6 +1,7 @@
 package com.example.calendarapp
 
 import android.content.Intent
+import android.database.Cursor
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ class CalendarActivity : AppCompatActivity() {
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*
         val appointmentTitles = arrayOf(
             "Vagt Vandtårnsvej",
             "Vagt Hedehusene",
@@ -40,20 +42,21 @@ class CalendarActivity : AppCompatActivity() {
             LocalDate.parse("16-10-2021",formatter),
             LocalDate.parse("17-10-2021",formatter)
         )
-
-        appointmentArrayList = ArrayList()
-        for(i in appointmentTitles.indices){
-            val appointment = Appointment(appointmentTitles[i],appointmentNotes[i],appointmentDates[i])
+        */
+        appointmentArrayList = getItemsList()
+        sortListByDate(appointmentArrayList)
+        /*for(i in appointmentArrayList.indices){
+            val appointment = Appointment(appointmentArrayList[i].id,appointmentArrayList[i].appointmentTitle,appointmentArrayList[i].appointmentNote,appointmentArrayList[i].appointmentDate)
             appointmentArrayList.add(appointment)
-        }
+        }*/
 
         binding.listview.isClickable = true
         binding.listview.adapter = ListAdapter(this, appointmentArrayList)
         binding.listview.setOnItemClickListener {
             parent, view, position, id->
-            val appointmentTitle = appointmentTitles[position]
-            val appointmentNote = appointmentNotes[position]
-            val appointmentDate = appointmentDates[position]
+            val appointmentTitle = appointmentArrayList[position].appointmentTitle
+            val appointmentNote = appointmentArrayList[position].appointmentNote
+            val appointmentDate = appointmentArrayList[position].appointmentDate
 
             val i = Intent(this,AppointmentActivity::class.java)
             i.putExtra("title", appointmentTitle)
@@ -67,5 +70,22 @@ class CalendarActivity : AppCompatActivity() {
             val i = Intent(this,MakeAppointmentActivity::class.java)
             startActivity(i)
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getItemsList(): ArrayList<Appointment> {
+        //creating the instance of DatabaseHandler class
+        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+        //calling the viewEmployee method of DatabaseHandler class to read the records
+        var appointmentList: ArrayList<Appointment> = databaseHandler.viewAppointment()
+
+
+        return  appointmentList
+    }
+
+    private fun sortListByDate(arrayList: ArrayList<Appointment>): ArrayList<Appointment> {
+        arrayList.sortBy{ it.appointmentDate }
+
+        return arrayList
+
     }
 }

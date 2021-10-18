@@ -19,14 +19,12 @@
             android:id="@+id/title_make_appointment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="25sp"
             android:text="@string/MakeAppointment"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="50sp" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="125dp" />
+
         <EditText
             android:id="@+id/edittext_title"
             android:layout_width="match_parent"
@@ -54,6 +52,18 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
+        <DatePicker
+            android:id="@+id/datepicker_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/note"
+            android:inputType="date"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/gray"
+            android:importantForAutofill="no" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
     </LinearLayout>
     <Button
         android:id="@+id/buttonDone"
@@ -65,6 +75,6 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="0dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
