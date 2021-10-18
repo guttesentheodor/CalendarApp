@@ -40,6 +40,16 @@ class DatabaseHandler(context: Context) :
         db!!.execSQL("DROP TABLE IF EXISTS $TABLE_CALENDAR")
         onCreate(db)
     }
+    fun deleteAppointment(id : Int): Int {
+        val db = this.writableDatabase
+
+        // Inserting employee details using insert query.
+        val success = db.delete(TABLE_CALENDAR, KEY_ID + "=" + id,null)
+        //2nd argument is String containing nullColumnHack
+
+        db.close() // Closing database connection
+        return success
+    }
     fun addAppointment(appointment: Appointment): Long {
         val db = this.writableDatabase
 

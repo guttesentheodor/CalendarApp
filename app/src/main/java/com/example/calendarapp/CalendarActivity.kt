@@ -52,13 +52,16 @@ class CalendarActivity : AppCompatActivity() {
 
         binding.listview.isClickable = true
         binding.listview.adapter = ListAdapter(this, appointmentArrayList)
+
         binding.listview.setOnItemClickListener {
             parent, view, position, id->
+            val appointmentId = appointmentArrayList[position].id
             val appointmentTitle = appointmentArrayList[position].appointmentTitle
             val appointmentNote = appointmentArrayList[position].appointmentNote
             val appointmentDate = appointmentArrayList[position].appointmentDate
 
             val i = Intent(this,AppointmentActivity::class.java)
+            i.putExtra("id",appointmentId)
             i.putExtra("title", appointmentTitle)
             i.putExtra("note", appointmentNote)
             i.putExtra("date", appointmentDate.toString())

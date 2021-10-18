@@ -1,5 +1,6 @@
 package com.example.calendarapp
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter
 class AppointmentActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAppointmentBinding
+    private lateinit var databaseHandler : DatabaseHandler
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -18,7 +20,7 @@ class AppointmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAppointmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val appointmentId =  intent.getIntExtra("id",-99)
         val appointmentTitle =  intent.getStringExtra("title")
         val appointmentNote =  intent.getStringExtra("note")
         val appointmentDate =  intent.getStringExtra("date")
@@ -30,6 +32,12 @@ class AppointmentActivity : AppCompatActivity() {
         binding.appointmentNote.text = appointmentNote
         binding.appointmentDate.text = date.format(formatter).toString()
 
-
+        binding.buttonDelete.isClickable = true
+        binding.buttonDelete.setOnClickListener {
+            val databaseHandler: DatabaseHandler = DatabaseHandler(this)
+            databaseHandler.deleteAppointment(appointmentId)
+            val i = Intent(this,CalendarActivity::class.java)
+            startActivity(i)
+        }
     }
 }
