@@ -23,7 +23,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:id="@+id/appointmentTitle"
-                   android:text="example appointment"
+                   android:text="@string/example_appointment"
                    android:textColor="@color/black"
                    android:textSize="26sp"
                    android:textStyle="bold"/>
@@ -35,7 +35,7 @@
            android:layout_height="wrap_content"
            android:id="@+id/appointmentDate"
            android:layout_marginTop="15dp"
-           android:layout_alignParentRight="true"
-           android:text="13-10-20217"/>
+           android:layout_alignParentEnd="true"
+           android:text="@string/example_date"/>
    </RelativeLayout>
 </LinearLayout>

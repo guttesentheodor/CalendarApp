@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter
 class AppointmentActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAppointmentBinding
-    private lateinit var databaseHandler : DatabaseHandler
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -25,8 +24,8 @@ class AppointmentActivity : AppCompatActivity() {
         val appointmentNote =  intent.getStringExtra("note")
         val appointmentDate =  intent.getStringExtra("date")
 
-        var date = LocalDate.parse(appointmentDate)
-        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val date = LocalDate.parse(appointmentDate)
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
         binding.appointmentTitle.text = appointmentTitle
         binding.appointmentNote.text = appointmentNote

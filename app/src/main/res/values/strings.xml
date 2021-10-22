@@ -6,5 +6,9 @@
     <string name="note">skriv noter her</string>
     <string name="MakeAppointmentDone">Tilføj</string>
     <string name="Delete">delete</string>
+    <string name="appointment_title">Appointment Title</string>
+    <string name="example_date">13-10-2021</string>
+    <string name="note_example">Note example</string>
+    <string name="example_appointment">example appointment</string>
 
 </resources>

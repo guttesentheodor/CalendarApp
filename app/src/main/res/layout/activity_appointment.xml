@@ -20,7 +20,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="Appointment Title"
+        android:text="@string/appointment_title"
+        android:textSize="34sp"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -28,14 +29,15 @@
         android:id="@+id/appointmentDate"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="13-10-2021"
+        android:textSize="26sp"
+        android:text="@string/example_date"
         />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/appointmentNote"
-                android:text="Note example"
+                android:text="@string/note_example"
                 android:textSize="26sp"
                 android:textColor="@color/black"/>
 
