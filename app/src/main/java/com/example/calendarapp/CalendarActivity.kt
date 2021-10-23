@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import com.example.calendarapp.databinding.ActivityCalendarBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarActivity : AppCompatActivity() {
 
@@ -46,10 +49,25 @@ class CalendarActivity : AppCompatActivity() {
         }
     }
 
+    private fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
+    }
+
+    private fun createNotification(){
+
+    }
+
+    private fun deleteOldAppointment(){
+
+    }
+
+    private fun archiveOldAppointment(){
+
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getItemsList(): ArrayList<Appointment> {
-        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-
+        val databaseHandler = DatabaseHandler(this)
 
         return databaseHandler.viewAppointment()
     }
@@ -58,6 +76,5 @@ class CalendarActivity : AppCompatActivity() {
         arrayList.sortBy{ it.appointmentDate }
 
         return arrayList
-
     }
 }

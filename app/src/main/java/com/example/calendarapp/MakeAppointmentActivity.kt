@@ -30,8 +30,9 @@ class MakeAppointmentActivity : AppCompatActivity() {
             startActivity(i)
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun addAppointment(){
+    private fun getDate(): LocalDate {
         val day = binding.datepickerDate.dayOfMonth
         val month = binding.datepickerDate.month+1
         val year =  binding.datepickerDate.year
@@ -46,10 +47,12 @@ class MakeAppointmentActivity : AppCompatActivity() {
         }
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val dateString = "$formattedDay-$formattedMonth-$year"
-        val date = LocalDate.parse(dateString, formatter)
+        return LocalDate.parse(dateString, formatter)
+    }
 
-        val databaseHandler: DatabaseHandler = DatabaseHandler(this)
-        val status = databaseHandler.addAppointment(Appointment(0,binding.edittextTitle.text.toString(),binding.edittextNote.text.toString(),date))
+    private fun addAppointment(){
+        val databaseHandler = DatabaseHandler(this)
+        val status = databaseHandler.addAppointment(Appointment(0,binding.edittextTitle.text.toString(),binding.edittextNote.text.toString(),getDate()))
         if(status>-1){
             Toast.makeText(applicationContext,"Appointment saved", Toast.LENGTH_LONG).show()
         }
